@@ -1,0 +1,48 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.input {
+  margin-bottom: 20px;
+  width: 360px;
+}
+
+.input,
+.addTodo,
+.filterTodos,
+.completeTodo {
+  padding: 10px 15px;
+  border-radius: 0;
+  border: 1px solid #999999;
+  outline: none;
+}
+
+.addTodo,
+.filterTodos,
+.completeTodo {
+  cursor: pointer;
+}
+
+.completeTodo {
+  background: #90EE90;
+  border: 1px solid #5ca55c
+}
+
+.todoItem {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #EEEEEE;
+  padding: 10px 20px;
+  border: 1px solid #CCCCCC;
+  margin-bottom: 10px;
+}
