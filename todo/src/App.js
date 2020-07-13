@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { initialState, reducer } from './reducers/todoReducer';
 import './App.css';
 
@@ -9,7 +9,14 @@ function App() {
   const handleChanges = (e) => {
     setInputValue(e.target.value);
   };
-  console.log(state);
+
+  const handleCompleted = (id) => {
+    dispatch({ type: 'TOGGLE_TODO', payload: { id } });
+  };
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <div className='App'>
@@ -20,11 +27,20 @@ function App() {
         Add Todo
       </button>
 
-      <div>
-        {state.map((todo) => (
-          <p>{todo.item}</p>
-        ))}
-      </div>
+      {state.map((todo) => (
+        <div key={todo.id}>
+          <span
+            style={
+              todo.completed
+                ? { textDecoration: 'line-through' }
+                : { textDecoration: 'none' }
+            }
+          >
+            {todo.item}
+          </span>
+          <button onClick={() => handleCompleted(todo.id)}>Complete!</button>
+        </div>
+      ))}
     </div>
   );
 }
