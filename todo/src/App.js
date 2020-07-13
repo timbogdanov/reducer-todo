@@ -14,21 +14,29 @@ function App() {
     dispatch({ type: 'TOGGLE_TODO', payload: { id } });
   };
 
+  const filterTodos = () => {
+    dispatch({ type: 'FILTER_TODOS' });
+  };
+
   useEffect(() => {
     console.log(state);
   }, [state]);
 
   return (
     <div className='App'>
-      <input value={inputValue} onChange={handleChanges} />
+      <input className='input' value={inputValue} onChange={handleChanges} />
       <button
+        className='addTodo'
         onClick={() => dispatch({ type: 'ADD_TODO', payload: inputValue })}
       >
         Add Todo
       </button>
+      <button className='filterTodos' onClick={() => filterTodos()}>
+        Filter out Completed
+      </button>
 
       {state.map((todo) => (
-        <div key={todo.id}>
+        <div className='todoItem' key={todo.id}>
           <span
             style={
               todo.completed
@@ -38,7 +46,12 @@ function App() {
           >
             {todo.item}
           </span>
-          <button onClick={() => handleCompleted(todo.id)}>Complete!</button>
+          <button
+            className='completeTodo'
+            onClick={() => handleCompleted(todo.id)}
+          >
+            &#10003;
+          </button>
         </div>
       ))}
     </div>
